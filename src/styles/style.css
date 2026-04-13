@@ -56,14 +56,6 @@ header {
   gap: 0.625rem;
 }
 
-/*
-#hero-logo {
-  font-family: "ROKAF Sans";
-  font-weight: 700;
-  font-size: 25.63px;
-  color: #3692ff;
-}*/
-
 .login-bttn {
   display: flex;
   justify-content: center;
