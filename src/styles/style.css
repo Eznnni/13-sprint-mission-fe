@@ -82,7 +82,7 @@ header {
   background-color: #cfe5ff;
 }
 
-.main-blue:last-of-type {
+.main-blue--bottom {
   display: flex;
   flex-direction: column;
   flex: 1;
