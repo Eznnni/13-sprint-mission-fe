@@ -1,11 +1,3 @@
-* {
-  box-sizing: border-box;
-  text-decoration: none;
-  color: inherit;
-  margin: 0;
-  padding: 0;
-}
-
 body {
   display: flex;
   justify-content: center;
