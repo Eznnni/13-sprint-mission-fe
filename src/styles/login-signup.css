@@ -54,7 +54,7 @@ body {
 }
 
 .content-input::placeholder {
-  color: var(--Secondary-400);
+  color: var(--secondary-400);
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -62,7 +62,7 @@ body {
 }
 
 .content-title {
-  color: var(--Secondary-800);
+  color: var(--secondary-800);
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 700;
@@ -91,12 +91,12 @@ body {
   outline: none;
   border-radius: 0.75rem;
   border: none;
-  background: var(--Cool-Gray-100);
+  background: var(--cool-gray-100);
 }
 
 .content-input:focus {
   border: 1px solid var(--brand-blue);
-  background: var(--Cool-Gray-50);
+  background: var(--cool-gray-50);
 }
 
 .pw-toggle {
@@ -119,8 +119,8 @@ body {
   border-radius: 2.5rem;
   border: none;
   cursor: pointer;
-  background: var(--Secondary-400);
-  color: var(--Cool-Gray-100);
+  background: var(--secondary-400);
+  color: var(--cool-gray-100);
   text-align: center;
   font-size: 1.25rem;
   font-style: normal;
@@ -148,7 +148,7 @@ body {
 }
 
 .social-login > div {
-  color: var(--Secondary-800);
+  color: var(--secondary-800);
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -175,7 +175,7 @@ body {
 }
 
 .signup-wrapper > span {
-  color: var(--Secondary-800);
+  color: var(--secondary-800);
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
@@ -183,7 +183,7 @@ body {
 }
 
 .signup-wrapper > a {
-  color: var(--Primary-100);
+  color: var(--primary-100);
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
