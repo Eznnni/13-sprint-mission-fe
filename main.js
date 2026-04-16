@@ -15,6 +15,9 @@ import {
 } from "./src/api/ProductService.js";
 
 const articleId = 5954;
+const productId = 3492;
+
+/*Article 관련 API 함수 실행*/
 
 getArticleList(1, 10, "")
   .then((data) => {
@@ -46,13 +49,13 @@ createArticle(newArticle)
     console.log("생성 실패", error);
   });
 
-const updates = {
+const articleUpdates = {
   image: "https://example.com/...",
   content: "게시글 내용이 수정되었습니다.",
   title: "수정된 게시글 제목입니다.",
 };
 
-patchArticle(articleId, updates)
+patchArticle(articleId, articleUpdates)
   .then((data) => {
     console.log("수정된 게시글 데이터:", data);
   })
@@ -63,9 +66,46 @@ patchArticle(articleId, updates)
 deleteArticle(articleId)
   .then((data) => {
     if (data) {
-      console.log(`게시글 ${data.id} 삭제 완료`);
+      console.log(`게시글 id = ${data.id} 삭제 완료`);
     }
   })
   .catch((error) => {
     console.log("삭제 실패", error);
   });
+
+/*Product 관련 API 함수 실행*/
+
+const productsList = await getProductList(1, 10, "");
+console.log(productsList);
+
+const product = await getProduct(productId);
+console.log(product);
+
+const newProduct = {
+  images: ["https://example.com/..."],
+  tags: ["전자제품"],
+  price: 0,
+  description: "string",
+  name: "상품 이름",
+};
+
+const newCreatedProduct = await createProduct(newProduct);
+console.log(newCreatedProduct);
+
+const productUpdates = {
+  images: ["https://example.com/..."],
+  tags: ["전자제품"],
+  price: 0,
+  description: "string",
+  name: "상품 이름",
+};
+
+const updatedProduct = await patchProduct(productId, productUpdates);
+console.log(updatedProduct);
+
+const deletedProduct = await deleteProduct(newCreatedProduct.id);
+if (deletedProduct) {
+  console.log(`상품 id = ${deletedProduct.id} 삭제 완료`);
+} else {
+  console.log("삭제 실패");
+}
