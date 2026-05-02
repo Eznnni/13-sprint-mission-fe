@@ -6,6 +6,8 @@ import dropDownIcon from "../assets/icons/ic_arrow_down.svg";
 import "../styles/components/forSaleProductList.css";
 import Pagination from "./Pagination";
 import usePageSize from "../hooks/usePageSize";
+import dropDownMobileIcon from "../assets/icons/ic_sort.svg";
+import { useMediaQuery } from "react-responsive";
 
 function ForSaleProductList() {
   const [forSaleProducts, setForSaleProducts] = useState([]);
@@ -16,6 +18,7 @@ function ForSaleProductList() {
   const [isOpen, setIsOpen] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const pageSize = usePageSize("forSale");
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   const handleDropdownOption = (value) => {
     setOrderBy(value);
@@ -74,7 +77,10 @@ function ForSaleProductList() {
             <div className="orderBy-dropdown-value">
               {orderBy === "recent" ? "최신순" : "좋아요순"}
             </div>
-            <img src={dropDownIcon} alt="드롭다운 아이콘" />
+            <img
+              src={isMobile ? dropDownMobileIcon : dropDownIcon}
+              alt="드롭다운 아이콘"
+            />
 
             {isOpen && (
               <ul className="dropdown-option">
