@@ -1,0 +1,20 @@
+.best-product-section {
+  max-width: 75rem;
+  max-height: 26.6rem;
+  margin: 0 auto;
+}
+.best-product-title {
+  color: var(--secondary-900);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2rem; /* 160% */
+  margin-bottom: 1rem;
+}
+
+.best-product-grid {
+  list-style: none;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+}
