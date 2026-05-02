@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { CardBox } from "./CardBox";
 import { productApi } from "../api/productApi";
 import "../styles/components/bestProductList.css";
+import usePageSize from "../hooks/usePageSize";
+
 function BestProductList() {
   const [bestProducts, setBestProducts] = useState([]);
+  const pageSize = usePageSize("best");
 
   useEffect(() => {
     const fetchBestProducts = async () => {
@@ -17,11 +20,13 @@ function BestProductList() {
     fetchBestProducts();
   }, []);
 
+  const displayProducts = bestProducts.slice(0, pageSize);
+
   return (
     <section className="best-product-section">
       <h2 className="best-product-title">베스트 상품</h2>
       <div className="best-product-grid">
-        {bestProducts.map((bestProduct) => (
+        {displayProducts.map((bestProduct) => (
           <CardBox key={bestProduct.id} product={bestProduct} />
         ))}
       </div>

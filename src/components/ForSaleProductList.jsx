@@ -5,6 +5,7 @@ import searchIcon from "../assets/icons/ic_search.svg";
 import dropDownIcon from "../assets/icons/ic_arrow_down.svg";
 import "../styles/components/forSaleProductList.css";
 import Pagination from "./Pagination";
+import usePageSize from "../hooks/usePageSize";
 
 function ForSaleProductList() {
   const [forSaleProducts, setForSaleProducts] = useState([]);
@@ -14,7 +15,7 @@ function ForSaleProductList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const pageSize = 10;
+  const pageSize = usePageSize("forSale");
 
   const handleDropdownOption = (value) => {
     setOrderBy(value);
@@ -38,7 +39,7 @@ function ForSaleProductList() {
       }
     };
     fetchForSaleProducts();
-  }, [page, orderBy, searchTerm]);
+  }, [page, orderBy, searchTerm, pageSize]);
 
   useEffect(() => {
     const timer = setTimeout(() => {

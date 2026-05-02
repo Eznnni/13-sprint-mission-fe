@@ -1,6 +1,5 @@
 .best-product-section {
   max-width: 75rem;
-  max-height: 26.6rem;
   margin: 0 auto;
 }
 .best-product-title {
@@ -17,4 +16,15 @@
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1023px) {
+  .best-product-title {
+    margin: 1.5rem;
+  }
+  .best-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 1.5rem;
+    gap: 1rem;
+  }
 }
