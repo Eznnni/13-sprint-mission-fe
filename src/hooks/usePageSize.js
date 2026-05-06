@@ -1,20 +1,19 @@
 import { useMediaQuery } from "react-responsive";
 
+const PAGE_SIZE = {
+  best: { desktop: 4, tablet: 2, mobile: 1 },
+  forSale: { desktop: 10, tablet: 6, mobile: 4 },
+};
+
 function usePageSize(type = "best") {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   const isTablet = useMediaQuery({ minWidth: 768 });
+  const sizes = PAGE_SIZE[type];
 
-  if (type === "best") {
-    if (isDesktop) return 4;
-    if (isTablet) return 2;
-    return 1;
-  }
+  if (isDesktop) return sizes.desktop;
+  if (isTablet) return sizes.tablet;
 
-  if (type === "forSale") {
-    if (isDesktop) return 10;
-    if (isTablet) return 6;
-    return 4;
-  }
+  return sizes.mobile;
 }
 
 export default usePageSize;
