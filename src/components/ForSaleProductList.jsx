@@ -11,30 +11,46 @@ import { useMediaQuery } from "react-responsive";
 
 function ForSaleProductList() {
   const [forSaleProducts, setForSaleProducts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [orderBy, setOrderBy] = useState("recent");
-  const [keyword, setKeyword] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [params, setParams] = useState({
+    page: 1,
+    orderBy: "recent",
+    keyword: "",
+    searchTerm: "",
+  });
+
   const [isOpen, setIsOpen] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const pageSize = usePageSize("forSale");
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   const handleDropdownOption = (value) => {
-    setOrderBy(value);
+    setParams((prev) => ({
+      ...prev,
+      orderBy: value,
+      page: 1,
+    }));
     setIsOpen(false);
-    setPage(1);
+  };
+
+  const updateParams = (key, value) => {
+    setParams((prev) => ({
+      ...prev,
+      [key]: value,
+      page: key === "page" ? value : 1,
+    }));
   };
 
   useEffect(() => {
     const fetchForSaleProducts = async () => {
+      const currentPage = Number(params.page) || 1;
+
       try {
-        const data = await productApi.getProductList(
-          page,
+        const data = await productApi.getProductList({
+          page: currentPage,
           pageSize,
-          orderBy,
-          searchTerm,
-        );
+          orderBy: params.orderBy,
+          searchTerm: params.searchTerm,
+        });
         setForSaleProducts(data.list);
         setTotalCount(data.totalCount);
       } catch (error) {
@@ -42,16 +58,15 @@ function ForSaleProductList() {
       }
     };
     fetchForSaleProducts();
-  }, [page, orderBy, searchTerm, pageSize]);
+  }, [params.page, params.orderBy, params.searchTerm, pageSize]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setSearchTerm(keyword);
-      setPage(1);
+      setParams((prev) => ({ ...prev, searchTerm: prev.keyword, page: 1 }));
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [keyword]);
+  }, [params.keyword]);
 
   return (
     <section className="for-sale-product-section">
@@ -64,7 +79,7 @@ function ForSaleProductList() {
               type="text"
               placeholder="검색할 상품을 입력해주세요"
               className="search-bar"
-              onChange={(e) => setKeyword(e.target.value)}
+              onChange={(e) => updateParams("keyword", e.target.value)}
             />
           </div>
           <a href="#" type="button" className="product-add-button">
@@ -72,10 +87,10 @@ function ForSaleProductList() {
           </a>
           <div
             className="orderBy-dropdown-wrapper"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen((prev) => !prev)}
           >
             <div className="orderBy-dropdown-value">
-              {orderBy === "recent" ? "최신순" : "좋아요순"}
+              {params.orderBy === "recent" ? "최신순" : "좋아요순"}
             </div>
             <img
               src={isMobile ? dropDownMobileIcon : dropDownIcon}
@@ -109,8 +124,10 @@ function ForSaleProductList() {
       <Pagination
         totalCount={totalCount}
         pageSize={pageSize}
-        currentPage={page}
-        onPageChange={setPage}
+        currentPage={params.page}
+        onPageChange={(newPage) => {
+          updateParams("page", newPage);
+        }}
       />
     </section>
   );

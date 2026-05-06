@@ -3,12 +3,12 @@ import { api } from "./api.js";
 const PRODUCT_ENDPOINT = "/products";
 
 export const productApi = {
-  getProductList: async (
+  getProductList: async ({
     page = 1,
     pageSize = 10,
     orderBy = "recent",
     keyword,
-  ) => {
+  }) => {
     const params = new URLSearchParams();
     if (page) params.append("page", page);
     if (pageSize) params.append("pageSize", pageSize);
