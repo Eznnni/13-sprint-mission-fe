@@ -1,4 +1,4 @@
-import "../styles/components/pagination.css";
+import "../styles/pagination.css";
 function Pagination({ totalCount, pageSize, currentPage, onPageChange }) {
   const totalPages = Math.ceil(totalCount / pageSize);
   const pageLimit = 5;

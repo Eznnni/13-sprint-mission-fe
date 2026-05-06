@@ -1,4 +1,4 @@
-import "../styles/components/footer.css";
+import "../styles/footer.css";
 
 import facebook from "../assets/icons/social/facebook-logo.svg";
 import twitter from "../assets/icons/social/twitter-logo.svg";

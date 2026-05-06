@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CardBox } from "./CardBox";
 import { productApi } from "../api/productApi";
-import "../styles/components/bestProductList.css";
+import "../styles/bestProductList.css";
 import usePageSize from "../hooks/usePageSize";
 
 function BestProductList() {

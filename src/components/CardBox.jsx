@@ -1,5 +1,5 @@
 import heartIcon from "../assets/icons/ic_heart.svg";
-import "../styles/components/cardBox.css";
+import "../styles/cardBox.css";
 
 export function CardBox({ product }) {
   const { images, name, price, favoriteCount } = product;

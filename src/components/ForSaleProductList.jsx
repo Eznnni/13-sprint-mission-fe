@@ -3,7 +3,7 @@ import { CardBox } from "./CardBox";
 import { productApi } from "../api/productApi";
 import searchIcon from "../assets/icons/ic_search.svg";
 import dropDownIcon from "../assets/icons/ic_arrow_down.svg";
-import "../styles/components/forSaleProductList.css";
+import "../styles/forSaleProductList.css";
 import Pagination from "./Pagination";
 import usePageSize from "../hooks/usePageSize";
 import dropDownMobileIcon from "../assets/icons/ic_sort.svg";

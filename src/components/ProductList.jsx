@@ -1,6 +1,6 @@
 import BestProductList from "./BestProductList.jsx";
 import ForSaleProductList from "./ForSaleProductList.jsx";
-import "../styles/components/productList.css";
+import "../styles/productList.css";
 
 function ProductListCard() {
   return (

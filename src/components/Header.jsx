@@ -1,4 +1,4 @@
-import "../styles/components/header.css";
+import "../styles/header.css";
 import { useMediaQuery } from "react-responsive";
 import logoMobile from "/logo_mobile.png";
 import logoPC from "/logo.svg";
