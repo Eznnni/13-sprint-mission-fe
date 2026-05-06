@@ -2,7 +2,7 @@ import BestProductList from "./BestProductList.jsx";
 import ForSaleProductList from "./ForSaleProductList.jsx";
 import "../styles/productList.css";
 
-function ProductListCard() {
+function ProductList() {
   return (
     <div className="product-list-container">
       <div className="best-product-list-containter">
@@ -15,4 +15,4 @@ function ProductListCard() {
   );
 }
 
-export default ProductListCard;
+export default ProductList;
