@@ -2,11 +2,16 @@ import { api } from "./api.js";
 
 const PRODUCT_ENDPOINT = "/products";
 
+export const ORDER_BY = {
+  RECENT: "recent",
+  FAVORITE: "favorite",
+};
+
 export const productApi = {
   getProductList: async ({
     page = 1,
     pageSize = 10,
-    orderBy = "recent",
+    orderBy = ORDER_BY.RECENT,
     keyword,
   }) => {
     const params = new URLSearchParams();

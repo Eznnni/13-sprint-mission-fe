@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CardBox } from "./CardBox";
-import { productApi } from "../api/productApi";
+import { productApi, ORDER_BY } from "../api/productApi";
 import searchIcon from "../assets/icons/ic_search.svg";
 import dropDownIcon from "../assets/icons/ic_arrow_down.svg";
 import "../styles/forSaleProductList.css";
@@ -9,11 +9,16 @@ import usePageSize from "../hooks/usePageSize";
 import dropDownMobileIcon from "../assets/icons/ic_sort.svg";
 import { useMediaQuery } from "react-responsive";
 
+const ORDER_OPTIONS = [
+  { label: "최신순", value: ORDER_BY.RECENT, className: "dropdown-up" },
+  { label: "좋아요순", value: ORDER_BY.FAVORITE, className: "dropdown-down" },
+];
+
 function ForSaleProductList() {
   const [forSaleProducts, setForSaleProducts] = useState([]);
   const [params, setParams] = useState({
     page: 1,
-    orderBy: "recent",
+    orderBy: ORDER_BY.RECENT,
     keyword: "",
     searchTerm: "",
   });
@@ -22,6 +27,10 @@ function ForSaleProductList() {
   const [totalCount, setTotalCount] = useState(0);
   const pageSize = usePageSize("forSale");
   const isMobile = useMediaQuery({ maxWidth: 767 });
+
+  const currentOrderByLabel = ORDER_OPTIONS.find(
+    (option) => option.value === params.orderBy,
+  )?.label;
 
   const handleDropdownOption = (value) => {
     setParams((prev) => ({
@@ -89,9 +98,7 @@ function ForSaleProductList() {
             className="orderBy-dropdown-wrapper"
             onClick={() => setIsOpen((prev) => !prev)}
           >
-            <div className="orderBy-dropdown-value">
-              {params.orderBy === "recent" ? "최신순" : "좋아요순"}
-            </div>
+            <div className="orderBy-dropdown-value">{currentOrderByLabel}</div>
             <img
               src={isMobile ? dropDownMobileIcon : dropDownIcon}
               alt="드롭다운 아이콘"
@@ -99,18 +106,15 @@ function ForSaleProductList() {
 
             {isOpen && (
               <ul className="dropdown-option">
-                <li
-                  className="dropdown-up"
-                  onClick={() => handleDropdownOption("recent")}
-                >
-                  최신순
-                </li>
-                <li
-                  className="dropdown-down"
-                  onClick={() => handleDropdownOption("favorite")}
-                >
-                  좋아요순
-                </li>
+                {ORDER_OPTIONS.map((option) => (
+                  <li
+                    className={option.className}
+                    key={option.value}
+                    onClick={() => handleDropdownOption(option.value)}
+                  >
+                    {option.label}
+                  </li>
+                ))}
               </ul>
             )}
           </div>
