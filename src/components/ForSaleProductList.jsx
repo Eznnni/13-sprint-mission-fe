@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { CardBox } from "./CardBox";
 import { productApi, ORDER_BY } from "../api/productApi";
+import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router";
+
 import searchIcon from "../assets/icons/ic_search.svg";
 import dropDownIcon from "../assets/icons/ic_arrow_down.svg";
-import "../styles/forSaleProductList.css";
+import dropDownMobileIcon from "../assets/icons/ic_sort.svg";
+
 import Pagination from "./Pagination";
 import usePageSize from "../hooks/usePageSize";
-import dropDownMobileIcon from "../assets/icons/ic_sort.svg";
-import { useMediaQuery } from "react-responsive";
+
+import "../styles/forSaleProductList.css";
 
 const ORDER_OPTIONS = [
   { label: "최신순", value: ORDER_BY.RECENT, className: "dropdown-up" },
@@ -91,9 +95,13 @@ function ForSaleProductList() {
               onChange={(e) => updateParams("keyword", e.target.value)}
             />
           </div>
-          <a href="#" type="button" className="product-add-button">
+          <Link
+            to="/registeration"
+            type="button"
+            className="product-add-button"
+          >
             상품 등록하기
-          </a>
+          </Link>
           <div
             className="orderBy-dropdown-wrapper"
             onClick={() => setIsOpen((prev) => !prev)}

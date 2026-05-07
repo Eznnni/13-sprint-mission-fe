@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "../styles/hero.css";
 import topImg from "../assets/img/landing/Img_home_top.png";
 import homeImg1 from "../assets/img/landing/Img_home_01.png";
@@ -12,9 +13,9 @@ function Hero() {
         <div class="main-container">
           <div class="left-section">
             <h1 class="mention">일상의 모든 물건을 거래해 보세요</h1>
-            <a class="items-bttn" href="/src/pages/items.html">
+            <Link class="items-bttn" to="/items">
               구경하러 가기
-            </a>
+            </Link>
           </div>
           <img id="panda-img" src={topImg} alt="판다 이미지" />
         </div>

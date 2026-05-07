@@ -2,6 +2,7 @@ import "../styles/header.css";
 import { useMediaQuery } from "react-responsive";
 import logoMobile from "/logo_mobile.png";
 import logoPC from "/logo.svg";
+import { Link } from "react-router";
 
 function Header() {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -9,13 +10,13 @@ function Header() {
   return (
     <nav className="header-container">
       <div className="header-left-section">
-        <a href="/">
+        <Link to="/">
           <img src={isMobile ? logoMobile : logoPC} alt="판다마켓 홈" />
-        </a>
+        </Link>
       </div>
-      <a href="#" id="login-button" className="button">
+      <Link to="/login" id="login-button" className="button">
         로그인
-      </a>
+      </Link>
     </nav>
   );
 }
