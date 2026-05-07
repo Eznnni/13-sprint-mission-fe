@@ -15,7 +15,6 @@ import "../styles/forSaleProductList.css";
 
 const ORDER_OPTIONS = [
   { label: "최신순", value: ORDER_BY.RECENT, className: "dropdown-up" },
-  { label: "좋아요순", value: ORDER_BY.FAVORITE, className: "dropdown-down" },
 ];
 
 function ForSaleProductList() {
