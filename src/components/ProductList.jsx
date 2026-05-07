@@ -1,13 +1,13 @@
-import BestProductList from "./BestProductList.jsx";
+// import BestProductList from "./BestProductList.jsx";
 import ForSaleProductList from "./ForSaleProductList.jsx";
 import "../styles/productList.css";
 
 function ProductList() {
   return (
     <div className="product-list-container">
-      <div className="best-product-list-containter">
+      {/* <div className="best-product-list-containter">
         <BestProductList />
-      </div>
+      </div> */}
       <div className="forSale-product-list-containter">
         <ForSaleProductList />
       </div>
