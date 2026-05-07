@@ -12,14 +12,6 @@ function Header() {
         <a href="/">
           <img src={isMobile ? logoMobile : logoPC} alt="판다마켓 홈" />
         </a>
-        <div className="header-left-nav">
-          <a href="#" className="header-menu-item">
-            <span className="header-menu-item-tag">자유게시판</span>
-          </a>
-          <a href="#" className="header-menu-item">
-            <span className="header-menu-item-tag">중고마켓</span>
-          </a>
-        </div>
       </div>
       <a href="#" id="login-button" className="button">
         로그인
