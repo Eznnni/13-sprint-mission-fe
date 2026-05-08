@@ -22,7 +22,7 @@ function ForSaleProductList() {
   const [params, setParams] = useState({
     page: 1,
     orderBy: ORDER_BY.RECENT,
-    keyword: "",
+    search: "",
     searchTerm: "",
   });
 
@@ -74,11 +74,11 @@ function ForSaleProductList() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setParams((prev) => ({ ...prev, searchTerm: prev.keyword, page: 1 }));
+      setParams((prev) => ({ ...prev, searchTerm: prev.search, page: 1 }));
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [params.keyword]);
+  }, [params.search]);
 
   return (
     <section className="for-sale-product-section">
@@ -91,7 +91,7 @@ function ForSaleProductList() {
               type="text"
               placeholder="검색할 상품을 입력해주세요"
               className="search-bar"
-              onChange={(e) => updateParams("keyword", e.target.value)}
+              onChange={(e) => updateParams("search", e.target.value)}
             />
           </div>
           <Link
@@ -129,7 +129,7 @@ function ForSaleProductList() {
       </div>
       <div className="for-sale-product-grid">
         {forSaleProducts.map((forSaleProduct) => (
-          <CardBox key={forSaleProduct.id} product={forSaleProduct} />
+          <CardBox key={forSaleProduct._id} product={forSaleProduct} />
         ))}
       </div>
       <Pagination

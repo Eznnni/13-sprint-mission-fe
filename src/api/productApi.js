@@ -12,14 +12,18 @@ export const productApi = {
     page = 1,
     pageSize = 10,
     orderBy = ORDER_BY.RECENT,
-    keyword,
+    searchTerm,
   }) => {
     const params = new URLSearchParams();
-    if (page) params.append("page", page);
-    if (pageSize) params.append("pageSize", pageSize);
-    if (orderBy) params.append("orderBy", orderBy);
-    if (keyword) params.append("keyword", keyword);
+    const offset = (Number(page) - 1) * Number(pageSize);
+    params.append("offset", offset);
+    if (pageSize) params.append("limit", pageSize);
+    if (orderBy) params.append("sort", orderBy);
+    if (searchTerm) params.append("search", searchTerm);
 
     return await api.get(`${PRODUCT_ENDPOINT}?${params}`);
+  },
+  createProduct: async (newProduct) => {
+    return await api.post(`${PRODUCT_ENDPOINT}`, newProduct);
   },
 };
