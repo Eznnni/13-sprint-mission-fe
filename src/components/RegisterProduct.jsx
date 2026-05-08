@@ -2,6 +2,7 @@ import useRegisterForm from "../hooks/useRegisterForm";
 import "../styles/RegisterProduct.css";
 import XIcon from "../assets/icons/ic_X.svg";
 import { productApi } from "../api/productApi";
+import { useNavigate } from "react-router";
 
 function RegisterProduct() {
   const {
@@ -19,6 +20,8 @@ function RegisterProduct() {
     tag: "",
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,8 +33,14 @@ function RegisterProduct() {
         price: Number(values.price),
         tags: tags,
       };
-      await productApi.createProduct(processData);
+      const newProduct = await productApi.createProduct(processData);
       alert("상품 등록을 성공했어요!");
+
+      if (newProduct && newProduct._id) {
+        navigate(`/items/${newProduct._id}`);
+      } else {
+        navigate("/registeration");
+      }
     } catch (error) {
       console.error(`상품 등록에 실패했어요 ${error.message}`);
     }
