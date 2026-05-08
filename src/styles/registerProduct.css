@@ -43,6 +43,10 @@
   line-height: 1.625rem; /* 162.5% */
 }
 
+.register-submit-button.abled {
+  background: var(--brand-blue);
+}
+
 .register-input-section {
   display: flex;
   flex-direction: column;

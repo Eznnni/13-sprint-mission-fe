@@ -61,6 +61,21 @@ function useRegisterForm(inputValues) {
     return Object.keys(newErrors).length === 0;
   };
 
+  const isFormValid = () => {
+    const requiredFields = {
+      name: values.name,
+      intro: values.intro,
+      price: values.price,
+    };
+    const allFieldsFilled = Object.values(requiredFields).every(
+      (val) => val.trim() !== "",
+    );
+
+    const hasNoErrors = Object.values(errors).every((error) => !error);
+
+    return allFieldsFilled && hasNoErrors;
+  };
+
   return {
     values,
     errors,
@@ -69,6 +84,7 @@ function useRegisterForm(inputValues) {
     handleKeyDown,
     handleRemoveTag,
     handleValidate,
+    isDisabled: !isFormValid(),
   };
 }
 

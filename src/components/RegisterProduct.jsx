@@ -13,6 +13,7 @@ function RegisterProduct() {
     handleKeyDown,
     handleRemoveTag,
     handleValidate,
+    isDisabled,
   } = useRegisterForm({
     name: "",
     intro: "",
@@ -50,7 +51,11 @@ function RegisterProduct() {
     <form onSubmit={handleSubmit} className="register-product-section">
       <div className="register-section-top">
         <h2 className="register-page-title">상품 등록하기</h2>
-        <button className="register-submit-button" type="submit">
+        <button
+          className={`register-submit-button ${!isDisabled ? "abled" : ""}`}
+          type="submit"
+          disabled={isDisabled}
+        >
           등록
         </button>
       </div>
