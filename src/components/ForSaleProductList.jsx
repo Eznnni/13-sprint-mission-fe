@@ -128,9 +128,16 @@ function ForSaleProductList() {
         </div>
       </div>
       <div className="for-sale-product-grid">
-        {forSaleProducts.map((forSaleProduct) => (
-          <CardBox key={forSaleProduct._id} product={forSaleProduct} />
-        ))}
+        {forSaleProducts.length > 0 ? (
+          forSaleProducts.map((forSaleProduct) => (
+            <CardBox key={forSaleProduct._id} product={forSaleProduct} />
+          ))
+        ) : (
+          <div className="for-sale-product-notfound">
+            검색 결과가 없습니다😥 <br />
+            다른 상품을 입력해 보세요!
+          </div>
+        )}
       </div>
       <Pagination
         totalCount={totalCount}
