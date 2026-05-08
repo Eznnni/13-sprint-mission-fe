@@ -1,47 +1,40 @@
-import { useState } from "react";
+import useRegisterForm from "../hooks/useRegisterForm";
 import "../styles/RegisterProduct.css";
 import XIcon from "../assets/icons/ic_X.svg";
+import { productApi } from "../api/productApi";
 
 function RegisterProduct() {
-  const [values, setValues] = useState({
+  const {
+    values,
+    errors,
+    tags,
+    handleChange,
+    handleKeyDown,
+    handleRemoveTag,
+    handleValidate,
+  } = useRegisterForm({
     name: "",
     intro: "",
     price: "",
     tag: "",
   });
 
-  const handleChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const processData = {
-      ...values,
-      price: Number(values.price),
-    };
-  };
-
-  const [tags, setTags] = useState([]);
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const newTag = values.tag.trim();
-
-      if (newTag && !tags.includes(newTag)) {
-        setTags([...tags, newTag]);
-        setValues({ ...values, tag: "" });
-      }
+    try {
+      if (!handleValidate()) return;
+      const processData = {
+        name: values.name,
+        description: values.intro,
+        price: Number(values.price),
+        tags: tags,
+      };
+      await productApi.createProduct(processData);
+      alert("상품 등록을 성공했어요!");
+    } catch (error) {
+      console.error(`상품 등록에 실패했어요 ${error.message}`);
     }
-  };
-
-  const handleRemoveTag = (removeIdx) => {
-    setTags(tags.filter((_, idx) => idx !== removeIdx));
   };
 
   return (
@@ -60,9 +53,10 @@ function RegisterProduct() {
             type="text"
             value={values.name}
             onChange={handleChange}
-            className="register-input-box"
+            className={`register-input-box ${errors.name ? "input-error" : ""}`}
             placeholder="상품명을 입력해주세요"
           />
+          {errors.name && <span className="error-message">{errors.name}</span>}
         </label>
         <label className="register-product-intro">
           <div className="register-input-title">상품 소개</div>
@@ -70,9 +64,12 @@ function RegisterProduct() {
             name="intro"
             value={values.intro}
             onChange={handleChange}
-            className="register-input-box register-input-box--intro"
+            className={`register-input-box register-input-box--intro ${errors.intro ? "input-error" : ""}`}
             placeholder="상품 소개를 입력해주세요"
           />
+          {errors.intro && (
+            <span className="error-message">{errors.intro}</span>
+          )}
         </label>
         <label className="register-product-price">
           <div className="register-input-title">판매가격</div>
@@ -81,9 +78,12 @@ function RegisterProduct() {
             type="text"
             value={values.price}
             onChange={handleChange}
-            className="register-input-box"
+            className={`register-input-box ${errors.price ? "input-error" : ""}`}
             placeholder="판매 가격을 입력해주세요"
           />
+          {errors.price && (
+            <span className="error-message">{errors.price}</span>
+          )}
         </label>
         <label className="register-product-tag">
           <div className="register-input-title">태그</div>
@@ -91,11 +91,12 @@ function RegisterProduct() {
             name="tag"
             type="text"
             value={values.tag}
-            className="register-input-box"
+            className={`register-input-box ${errors.tag ? "input-error" : ""}`}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             placeholder="태그를 입력해주세요"
           />
+          {errors.tag && <span className="error-message">{errors.tag}</span>}
           <div className="register-tag-container">
             {tags.map((tag, idx) => (
               <span key={idx} className="tag-item">

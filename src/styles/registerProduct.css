@@ -121,3 +121,12 @@ label {
 .tag-delete-button {
   cursor: pointer;
 }
+
+.register-input-box.input-error {
+  border: 1px solid var(--error-red);
+}
+
+.error-message {
+  margin-top: 0.5rem;
+  color: var(--error-red);
+}
