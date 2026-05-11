@@ -14,11 +14,7 @@ import usePageSize from "../hooks/usePageSize";
 import "../styles/forSaleProductList.css";
 import useDebounce from "../hooks/useDebounce";
 import { BREAKPOINTS, DEBOUNCE_DELAY } from "../constants/common";
-import { ORDER_BY } from "../constants/product";
-
-const ORDER_OPTIONS = [
-  { label: "최신순", value: ORDER_BY.RECENT, className: "dropdown-up" },
-];
+import { ORDER_BY, ORDER_OPTIONS } from "../constants/product";
 
 function ForSaleProductList() {
   const [forSaleProducts, setForSaleProducts] = useState([]);
