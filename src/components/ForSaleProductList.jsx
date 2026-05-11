@@ -12,6 +12,7 @@ import Pagination from "./Pagination";
 import usePageSize from "../hooks/usePageSize";
 
 import "../styles/forSaleProductList.css";
+import useDebounce from "../hooks/useDebounce";
 
 const ORDER_OPTIONS = [
   { label: "최신순", value: ORDER_BY.RECENT, className: "dropdown-up" },
@@ -72,13 +73,13 @@ function ForSaleProductList() {
     fetchForSaleProducts();
   }, [params.page, params.orderBy, params.searchTerm, pageSize]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setParams((prev) => ({ ...prev, searchTerm: prev.search, page: 1 }));
-    }, 500);
+  const debouncedSearch = useDebounce(params.search, 500);
 
-    return () => clearTimeout(timer);
-  }, [params.search]);
+  useEffect(() => {
+    if (debouncedSearch !== params.searchTerm) {
+      setParams((prev) => ({ ...prev, searchTerm: debouncedSearch, page: 1 }));
+    }
+  }, [debouncedSearch]);
 
   return (
     <section className="for-sale-product-section">
