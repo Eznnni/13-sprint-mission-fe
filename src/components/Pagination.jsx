@@ -12,12 +12,24 @@ function Pagination({ totalCount, pageSize, currentPage, onPageChange }) {
     (_, i) => startPage + i,
   );
 
+  const handlePagePrevClick = () => {
+    onPageChange(currentPage - 1);
+  };
+
+  const handlePageNextClick = () => {
+    onPageChange(currentPage + 1);
+  };
+
+  const handlePageClick = (num) => {
+    onPageChange(num);
+  };
+
   return (
     <div className="pagination">
       <button
         className="forth-back-button"
         disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={handlePagePrevClick}
       >
         &lt;
       </button>
@@ -26,7 +38,7 @@ function Pagination({ totalCount, pageSize, currentPage, onPageChange }) {
         <button
           className={`page-button ${num === currentPage ? "active" : ""}`}
           key={num}
-          onClick={() => onPageChange(num)}
+          onClick={() => handlePageClick(num)}
         >
           {num}
         </button>
@@ -35,7 +47,7 @@ function Pagination({ totalCount, pageSize, currentPage, onPageChange }) {
       <button
         className="forth-back-button"
         disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={handlePageNextClick}
       >
         &gt;
       </button>
