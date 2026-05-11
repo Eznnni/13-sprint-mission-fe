@@ -1,11 +1,6 @@
 import { api } from "./api.js";
-
-const PRODUCT_ENDPOINT = "/products";
-
-export const ORDER_BY = {
-  RECENT: "recent",
-  FAVORITE: "favorite",
-};
+import { ORDER_BY } from "../constants/product.js";
+import { PRODUCT_ENDPOINT } from "../constants/product.js";
 
 export const productApi = {
   getProductList: async ({

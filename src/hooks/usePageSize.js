@@ -1,13 +1,10 @@
 import { useMediaQuery } from "react-responsive";
-
-const PAGE_SIZE = {
-  best: { desktop: 4, tablet: 2, mobile: 1 },
-  forSale: { desktop: 10, tablet: 6, mobile: 4 },
-};
+import { PAGE_SIZE } from "../constants/product";
+import { BREAKPOINTS } from "../constants/common";
 
 function usePageSize(type = "best") {
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
-  const isTablet = useMediaQuery({ minWidth: 768 });
+  const isDesktop = useMediaQuery({ minWidth: BREAKPOINTS.DESKTOP_MIN });
+  const isTablet = useMediaQuery({ minWidth: BREAKPOINTS.TABLET_MIN });
   const sizes = PAGE_SIZE[type];
 
   if (isDesktop) return sizes.desktop;

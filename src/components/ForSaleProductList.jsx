@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CardBox } from "./CardBox";
-import { productApi, ORDER_BY } from "../api/productApi";
+import { productApi } from "../api/productApi";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router";
 
@@ -13,6 +13,8 @@ import usePageSize from "../hooks/usePageSize";
 
 import "../styles/forSaleProductList.css";
 import useDebounce from "../hooks/useDebounce";
+import { BREAKPOINTS, DEBOUNCE_DELAY } from "../constants/common";
+import { ORDER_BY } from "../constants/product";
 
 const ORDER_OPTIONS = [
   { label: "최신순", value: ORDER_BY.RECENT, className: "dropdown-up" },
@@ -30,7 +32,7 @@ function ForSaleProductList() {
   const [isOpen, setIsOpen] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const pageSize = usePageSize("forSale");
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isMobile = useMediaQuery({ maxWidth: BREAKPOINTS.MOBILE_MAX });
 
   const currentOrderByLabel = ORDER_OPTIONS.find(
     (option) => option.value === params.orderBy,
@@ -73,7 +75,7 @@ function ForSaleProductList() {
     fetchForSaleProducts();
   }, [params.page, params.orderBy, params.searchTerm, pageSize]);
 
-  const debouncedSearch = useDebounce(params.search, 500);
+  const debouncedSearch = useDebounce(params.search, DEBOUNCE_DELAY);
 
   useEffect(() => {
     if (debouncedSearch !== params.searchTerm) {

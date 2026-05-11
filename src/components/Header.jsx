@@ -3,9 +3,10 @@ import { useMediaQuery } from "react-responsive";
 import logoMobile from "/logo_mobile.png";
 import logoPC from "/logo.svg";
 import { Link } from "react-router";
+import { BREAKPOINTS } from "../constants/common";
 
 function Header() {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isMobile = useMediaQuery({ maxWidth: BREAKPOINTS.MOBILE_MAX });
 
   return (
     <nav className="header-container">

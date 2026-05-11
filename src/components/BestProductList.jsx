@@ -3,6 +3,7 @@ import { CardBox } from "./CardBox";
 import { productApi } from "../api/productApi";
 import "../styles/bestProductList.css";
 import usePageSize from "../hooks/usePageSize";
+import { ORDER_BY } from "../constants/product";
 
 function BestProductList() {
   const [bestProducts, setBestProducts] = useState([]);
@@ -14,7 +15,7 @@ function BestProductList() {
         const data = await productApi.getProductList({
           page: 1,
           pageSize: 4,
-          orderBy: "favorite",
+          orderBy: ORDER_BY.FAVORITE,
         });
         setBestProducts(data.list);
       } catch (error) {

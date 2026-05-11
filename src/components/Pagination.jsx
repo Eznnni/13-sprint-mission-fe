@@ -1,12 +1,12 @@
+import { PAGE_LIMIT } from "../constants/common";
 import "../styles/pagination.css";
 function Pagination({ totalCount, pageSize, currentPage, onPageChange }) {
   const totalPages = Math.ceil(totalCount / pageSize);
 
   if (totalPages <= 1) return null;
 
-  const pageLimit = 5;
-  const startPage = Math.floor((currentPage - 1) / pageLimit) * pageLimit + 1;
-  const endPage = Math.min(startPage + pageLimit - 1, totalPages);
+  const startPage = Math.floor((currentPage - 1) / PAGE_LIMIT) * PAGE_LIMIT + 1;
+  const endPage = Math.min(startPage + PAGE_LIMIT - 1, totalPages);
   const pageNumbers = Array.from(
     { length: endPage - startPage + 1 },
     (_, i) => startPage + i,

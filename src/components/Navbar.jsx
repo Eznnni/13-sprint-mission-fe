@@ -4,9 +4,10 @@ import "../styles/navbar.css";
 import { useMediaQuery } from "react-responsive";
 import logoMobile from "/logo_mobile.png";
 import logoPC from "/logo.svg";
+import { BREAKPOINTS } from "../constants/common";
 
 function Navbar() {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isMobile = useMediaQuery({ maxWidth: BREAKPOINTS.MOBILE_MAX });
 
   return (
     <nav className="header-container">
