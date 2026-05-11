@@ -11,7 +11,11 @@ function BestProductList() {
   useEffect(() => {
     const fetchBestProducts = async () => {
       try {
-        const data = await productApi.getProductList(1, 4, "favorite");
+        const data = await productApi.getProductList({
+          page: 1,
+          pageSize: 4,
+          orderBy: "favorite",
+        });
         setBestProducts(data.list);
       } catch (error) {
         console.error(`베스트 상품 목록 조회 실패 ${error.message}`);
