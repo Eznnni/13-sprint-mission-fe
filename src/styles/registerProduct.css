@@ -134,3 +134,17 @@ label {
   margin-top: 0.5rem;
   color: var(--error-red);
 }
+
+@media (max-width: 1023px) {
+  .register-product-section {
+    padding: 0 1.5rem;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .register-product-section {
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
+}
