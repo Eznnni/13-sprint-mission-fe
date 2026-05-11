@@ -4,10 +4,10 @@ function Pagination({ totalCount, pageSize, currentPage, onPageChange }) {
   const pageLimit = 5;
   const startPage = Math.floor((currentPage - 1) / pageLimit) * pageLimit + 1;
   const endPage = Math.min(startPage + pageLimit - 1, totalPages);
-  const pageNumbers = [];
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, i) => startPage + i,
+  );
 
   if (totalPages <= 1) return null;
 
