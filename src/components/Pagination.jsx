@@ -1,6 +1,9 @@
 import "../styles/pagination.css";
 function Pagination({ totalCount, pageSize, currentPage, onPageChange }) {
   const totalPages = Math.ceil(totalCount / pageSize);
+
+  if (totalPages <= 1) return null;
+
   const pageLimit = 5;
   const startPage = Math.floor((currentPage - 1) / pageLimit) * pageLimit + 1;
   const endPage = Math.min(startPage + pageLimit - 1, totalPages);
@@ -8,8 +11,6 @@ function Pagination({ totalCount, pageSize, currentPage, onPageChange }) {
     { length: endPage - startPage + 1 },
     (_, i) => startPage + i,
   );
-
-  if (totalPages <= 1) return null;
 
   return (
     <div className="pagination">
