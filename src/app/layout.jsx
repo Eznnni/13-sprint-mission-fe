@@ -12,9 +12,9 @@ const pretendard = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="ko" className={pretendard.className}>
-      <body className="font-sans">
+      <body className="flex min-h-screen flex-col font-sans">
         <Header />
-        <main className="pt-17.5">{children}</main>
+        <main className="grow pt-17.5">{children}</main>
         <Footer />
       </body>
     </html>
