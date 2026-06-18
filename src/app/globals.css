@@ -73,6 +73,10 @@
   }
 
   .btn {
-    @apply bg-brand-blue h-10.5 items-center justify-center rounded-lg px-6 py-3 text-[1rem] font-medium text-[#ffffff];
+    @apply bg-brand-blue flex h-10.5 cursor-pointer items-center justify-center rounded-lg px-6 py-3 text-[1rem] font-medium text-[#ffffff];
+  }
+
+  .btn-disabled {
+    @apply bg-cool-gray-400 flex h-10.5 cursor-not-allowed items-center justify-center rounded-lg px-6 py-3 text-[1rem] font-medium text-[#ffffff];
   }
 }
