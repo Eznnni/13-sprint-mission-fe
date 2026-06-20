@@ -12,3 +12,19 @@ export async function updatePost(id, data) {
 export async function getPostDetail(id) {
   return await api.get(`${POST_ENDPOINT}/${id}`);
 }
+
+export async function getPostList({
+  page = 1,
+  pageSize = 10,
+  orderBy = "recent",
+  keyword = "",
+}) {
+  const query = new URLSearchParams({
+    page: String(page),
+    pageSize: String(pageSize),
+    orderBy,
+    ...(keyword && { keyword }),
+  }).toString();
+
+  return await api.get(`${POST_ENDPOINT}?${query}`);
+}
