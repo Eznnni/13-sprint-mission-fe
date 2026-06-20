@@ -5,8 +5,6 @@ import PostList from "./_components/PostList";
 import * as postService from "@/services/postService";
 import Link from "next/link";
 
-//TODO 상세 페이지 연결
-
 export default async function Community({ searchParams }) {
   const resolvedSearchParams = await searchParams;
 
