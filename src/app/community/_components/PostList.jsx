@@ -4,6 +4,7 @@ import heartIcon from "@/assets/icons/ic_heart.svg";
 import notebookImg from "@/assets/notebook.png";
 import dateFormat from "@/utils/dateFormat";
 import Link from "next/link";
+import WriterInfo from "@/components/common/WriterInfo";
 
 export default function PostList({ post }) {
   const formattedDate = dateFormat(post.createdAt);
@@ -22,11 +23,7 @@ export default function PostList({ post }) {
             </div>
           </div>
           <div className="flex justify-between">
-            <div className="text-secondary-600 flex flex-row gap-2 text-[0.875rem] font-normal">
-              <Image src={defaultProfile} alt="기본 프로필" />
-              <div>{post.writer?.nickname || "총명한 판다"}</div>
-              <div className="text-secondary-400">{formattedDate}</div>
-            </div>
+            <WriterInfo post={post} />
             <div className="flex items-center gap-1">
               <Image src={heartIcon} alt="좋아요 아이콘" />
               <div className="text-secondary-500">{post.likeCount}</div>
