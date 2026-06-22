@@ -30,5 +30,5 @@ export async function getPostList({
 }
 
 export async function deletePost(id) {
-  return await api.get(`${POST_ENDPOINT}/${id}`);
+  return await api.delete(`${POST_ENDPOINT}/${id}`);
 }
