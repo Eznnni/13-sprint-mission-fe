@@ -25,6 +25,7 @@
   --color-secondary-600: #4b5563;
   --color-secondary-500: #6b7280;
   --color-secondary-400: #9ca3af;
+  --color-secondary-300: #e5e7eb;
   --color-secondary-200: #e5e7eb;
   --color-secondary-100: #f3f4f6;
   --color-secondary-50: #f9fafb;
@@ -36,6 +37,7 @@
   --color-cool-gray-600: #4b5563;
   --color-cool-gray-500: #72787f;
   --color-cool-gray-400: #9ea4a8;
+  --color-cool-gray-300: #d1d5db;
   --color-cool-gray-200: #e5e7eb;
   --color-cool-gray-100: #f3f4f6;
   --color-cool-gray-50: #f3f4f6;
@@ -78,5 +80,13 @@
 
   .btn-disabled {
     @apply bg-cool-gray-400 flex h-10.5 cursor-not-allowed items-center justify-center rounded-lg px-6 py-3 text-[1rem] font-medium text-[#ffffff];
+  }
+
+  .btn-gray {
+    @apply bg-cool-gray-400 flex h-10.5 cursor-pointer items-center justify-center rounded-lg px-6 py-3 text-[1rem] font-medium text-[#ffffff];
+  }
+
+  .btn-white {
+    @apply cursor-pointer items-center justify-center rounded-lg border border-gray-300 px-5 py-[0.44rem] text-gray-500;
   }
 }
