@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import dropdownIcon from "@/assets/icons/ic_arrow_down.svg";
 import { COMMUNITY_POST_OPTIONS } from "@/constants/dropdownOption.js";
