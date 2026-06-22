@@ -9,6 +9,11 @@ const pretendard = localFont({
   variable: "--font-pretendard",
 });
 
+export const metadata = {
+  title: "판다마켓 | 믿을 수 있는 중고 거래",
+  description: "일상의 모든 물건을 거래해보세요",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ko" className={pretendard.className}>
