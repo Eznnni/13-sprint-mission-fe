@@ -4,6 +4,7 @@ import Dropdown from "@/components/common/Dropdown";
 import PostList from "./_components/PostList";
 import * as postService from "@/services/postService";
 import Link from "next/link";
+import { ROUTES } from "@/constants/navigation";
 
 export default async function Community({ searchParams }) {
   const resolvedSearchParams = await searchParams;
@@ -42,7 +43,7 @@ export default async function Community({ searchParams }) {
           <h2 className="text-secondary-800 text-[1.25rem] leading-8 font-bold">
             게시글
           </h2>
-          <Link href="/community/register" className="btn" type="button">
+          <Link href={ROUTES.COMMUNITY.REGISTER} className="btn" type="button">
             글쓰기
           </Link>
         </div>

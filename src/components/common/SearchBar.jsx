@@ -1,6 +1,7 @@
 "use client";
 
 import searchIcon from "@/assets/icons/ic_search.svg";
+import { ROUTES } from "@/constants/navigation";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,7 +23,7 @@ export default function SearchBar({ currentKeyword }) {
     }
     params.set("page", "1");
 
-    router.push(`/community?${params.toString()}`);
+    router.push(`${ROUTES.COMMUNITY.BASE}?${params.toString()}`);
   }
 
   useEffect(() => {

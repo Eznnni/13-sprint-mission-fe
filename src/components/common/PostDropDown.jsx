@@ -3,12 +3,13 @@
 import { useRouter } from "next/navigation";
 import KebabDropdown from "./KebabDropdown";
 import { deletePost } from "@/services/postService";
+import { ROUTES } from "@/constants/navigation";
 
 export default function PostDropDown({ postId }) {
   const router = useRouter();
 
   function handleEdit() {
-    router.push(`/community/${postId}/edit`);
+    router.push(ROUTES.COMMUNITY.EDIT(postId));
   }
 
   const handleDelete = async () => {
@@ -17,7 +18,7 @@ export default function PostDropDown({ postId }) {
     try {
       await deletePost(postId);
       alert("게시글이 삭제되었습니다.");
-      router.push("/community");
+      router.push(ROUTES.COMMUNITY.BASE);
       router.refresh();
     } catch (error) {
       console.error("게시글 삭제 실패:", error);

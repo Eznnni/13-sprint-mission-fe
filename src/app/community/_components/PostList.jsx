@@ -3,10 +3,11 @@ import heartIcon from "@/assets/icons/ic_heart.svg";
 import notebookImg from "@/assets/notebook.png";
 import Link from "next/link";
 import WriterInfo from "@/components/common/WriterInfo";
+import { ROUTES } from "@/constants/navigation";
 
 export default function PostList({ post }) {
   return (
-    <Link href={`/community/${post.id}`}>
+    <Link href={ROUTES.COMMUNITY.DETAIL(post.id)}>
       <div className="border-cool-gray-200 flex w-full max-w-300 flex-col border-b bg-[#FCFCFC] pb-6">
         <div className="flex w-full flex-col gap-4">
           <div className="flex w-full justify-between gap-2 self-stretch">

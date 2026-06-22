@@ -6,6 +6,7 @@ import dropdownIcon from "@/assets/icons/ic_arrow_down.svg";
 import { COMMUNITY_POST_OPTIONS } from "@/constants/dropdownOption.js";
 import { useRouter, useSearchParams } from "next/navigation";
 import useClickOutside from "@/hooks/useClickOutside";
+import { ROUTES } from "@/constants/navigation";
 
 export default function Dropdown({ currentOrderBy }) {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function Dropdown({ currentOrderBy }) {
     const params = new URLSearchParams(searchParams.toString());
     params.set("orderBy", value);
     params.set("page", "1");
-    router.push(`/community?${params.toString()}`);
+    router.push(`${ROUTES.COMMUNITY.BASE}?${params.toString()}`);
   }
 
   const handleCloseDropdown = useCallback(() => {

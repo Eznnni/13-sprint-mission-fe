@@ -1,4 +1,5 @@
 import PostForm from "@/components/common/PostForm";
+import { ROUTES } from "@/constants/navigation";
 import { getPostDetail, updatePost } from "@/services/postService";
 import { redirect } from "next/navigation";
 
@@ -9,7 +10,7 @@ export default async function EditPage({ params }) {
   const initialData = response?.data;
 
   if (!initialData) {
-    redirect("/community");
+    redirect(ROUTES.COMMUNITY.BASE);
   }
 
   async function handleUpdate(formData) {
@@ -17,7 +18,7 @@ export default async function EditPage({ params }) {
     const data = Object.fromEntries(formData.entries());
     await updatePost(id, data);
 
-    redirect(`/community/${id}`);
+    redirect(ROUTES.COMMUNITY.DETAIL(id));
   }
 
   return (

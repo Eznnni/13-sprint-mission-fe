@@ -3,6 +3,16 @@ import instagram from "@/assets/icons/social/instagram-logo.svg";
 import twitter from "@/assets/icons/social/twitter-logo.svg";
 import youtube from "@/assets/icons/social/youtube-logo.svg";
 
+export const ROUTES = {
+  HOME: "/",
+  COMMUNITY: {
+    BASE: "/community",
+    REGISTER: "/community/register",
+    DETAIL: (id) => `/community/${id}`,
+    EDIT: (id) => `/community/${id}/edit`,
+  },
+};
+
 export const NAV_LINKS = [
   { id: 1, href: "/community", label: "자유게시판" },
   { id: 2, href: "/market", label: "중고마켓" },

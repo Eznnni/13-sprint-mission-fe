@@ -4,12 +4,13 @@ import notebookImg from "@/assets/notebook.png";
 import heartIcon from "@/assets/icons/ic_heart.svg";
 import dateFormat from "@/utils/dateFormat";
 import Link from "next/link";
+import { ROUTES } from "@/constants/navigation";
 
 export default function PostCard({ post }) {
   const formattedDate = dateFormat(post.createdAt);
 
   return (
-    <Link href={`/community/${post.id}`}>
+    <Link href={ROUTES.COMMUNITY.DETAIL(post.id)}>
       <div className="px bg-cool-gray-50 flex h-42.25 w-[24rem] flex-col rounded-lg px-6 py-0">
         <div className="flex h-38.25 w-84 flex-col">
           <Image src={bestBadge} alt="베스트 뱃지" className="mb-4" />
