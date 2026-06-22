@@ -10,10 +10,13 @@ import NoCommentFallBack from "@/components/ui/NoCommentFallBack";
 
 export default async function PostDetailpage({ params }) {
   const { id } = await params;
-  const postRes = await postService.getPostDetail(id);
-  const post = postRes?.data;
 
-  const commentsRes = await commentService.getPostComments(id);
+  const [postRes, commentsRes] = await Promise.all([
+    postService.getPostDetail(id),
+    commentService.getPostComments(id),
+  ]);
+
+  const post = postRes?.data;
   const comments = commentsRes?.list || [];
 
   return (
