@@ -1,14 +1,10 @@
 import Image from "next/image";
-import defaultProfile from "@/assets/icons/ic_profile.svg";
 import heartIcon from "@/assets/icons/ic_heart.svg";
 import notebookImg from "@/assets/notebook.png";
-import dateFormat from "@/utils/dateFormat";
 import Link from "next/link";
 import WriterInfo from "@/components/common/WriterInfo";
 
 export default function PostList({ post }) {
-  const formattedDate = dateFormat(post.createdAt);
-
   return (
     <Link href={`/community/${post.id}`}>
       <div className="border-cool-gray-200 flex w-full max-w-300 flex-col border-b bg-[#FCFCFC] pb-6">
