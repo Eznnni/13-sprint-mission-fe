@@ -31,6 +31,8 @@ export default function CommentInput({ postId }) {
     }
   };
 
+  const isButtonEnabled = content.trim().length > 0 && !isSubmitting;
+
   return (
     <div className="flex flex-col items-start justify-center gap-2.25 self-stretch">
       <h3 className="text-cool-gray-900 w-14 text-[1rem] font-semibold">
@@ -47,8 +49,8 @@ export default function CommentInput({ postId }) {
       </div>
       <button
         onClick={handleSubmit}
-        disabled={isSubmitting || !content.trim()}
-        className="btn-gray self-end"
+        disabled={!isButtonEnabled}
+        className={`self-end ${isButtonEnabled ? "btn" : "btn-disabled"}`}
         type="button"
       >
         {isSubmitting ? "등록 중..." : "등록"}
