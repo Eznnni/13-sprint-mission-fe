@@ -17,8 +17,7 @@ export default async function EditPage({ params }) {
     const data = Object.fromEntries(formData.entries());
     await updatePost(id, data);
 
-    //TODO 상세 게시글 페이지로 이동
-    redirect("/community");
+    redirect(`/community/${id}`);
   }
 
   return (
