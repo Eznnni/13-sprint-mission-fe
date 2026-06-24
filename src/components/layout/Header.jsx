@@ -27,7 +27,7 @@ export default function Header() {
           ))}
         </div>
       </div>
-      <Link href="/login" className="btn">
+      <Link href="/signin" className="btn">
         로그인
       </Link>
     </nav>
