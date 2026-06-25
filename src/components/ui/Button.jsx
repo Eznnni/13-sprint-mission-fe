@@ -13,7 +13,7 @@ const variantClasses = {
 
 const roundedClasses = {
   round: "rounded-[40px]",
-  // square: ""
+  square: "rounded-[8px]",
 };
 
 export default function Button({

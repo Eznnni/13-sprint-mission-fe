@@ -17,10 +17,8 @@ export const useSignUpMutation = () => {
       router.push("/items");
     },
 
-    //TODO 실패 메시지 모달
     onError: (error) => {
-      console.error("회원가입에 실패했습니다.", error.message);
-      alert("회원가입에 실패했습니다.", error.message);
+      console.error("회원가입에 실패했습니다." || error.message);
     },
   });
 };
