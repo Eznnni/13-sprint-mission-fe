@@ -4,6 +4,7 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import SocialLoginBox from "../_components/SocialLoginBox";
+import SignInForm from "./_components/SignInForm";
 
 export default function SignIn() {
   return (
@@ -14,39 +15,7 @@ export default function SignIn() {
         </Link>
 
         <section className="flex w-full flex-col items-center gap-6 self-stretch">
-          <form className="flex w-full flex-col items-start gap-6">
-            <div className="flex w-full flex-col items-start gap-6">
-              <div className="flex w-full flex-col items-start gap-4">
-                <label
-                  htmlFor="email"
-                  className="text-secondary-800 text-2lg font-bold"
-                >
-                  이메일
-                </label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="이메일을 입력해주세요"
-                />
-              </div>
-              <div className="flex w-full flex-col items-start gap-4">
-                <label
-                  htmlFor="password"
-                  className="text-secondary-800 text-2lg font-bold"
-                >
-                  비밀번호
-                </label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="비밀번호를 입력해주세요"
-                />
-              </div>
-            </div>
-            <Button size="large" variant="gray" rounded="round">
-              로그인
-            </Button>
-          </form>
+          <SignInForm />
           <SocialLoginBox />
           <div className="flex items-center justify-center gap-1">
             <span className="text-md text-secondary-800 font-medium">

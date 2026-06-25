@@ -15,6 +15,11 @@ const passwordSchema = z
     "영문 대소문자, 숫자, 특수문자(!@#$%^&*)만 사용 가능합니다.",
   );
 
+export const signInSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema,
+});
+
 export const signUpSchema = z
   .object({
     email: emailSchema,

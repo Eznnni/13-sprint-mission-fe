@@ -49,7 +49,7 @@ export const cookieFetch = async (url, options = {}) => {
       "Content-Type": "application/json",
     },
     // 쿠키 전송을 위한 설정
-    credentials: "include",
+    //credentials: "include",
     // 서버 컴포넌트에서도 매번 재검증
     cache: "no-store",
   };
@@ -85,7 +85,10 @@ export const cookieFetch = async (url, options = {}) => {
   }
 
   if (!response.ok) {
-    throw new Error(`API error: ${response.status}`);
+    // 💡 백엔드 응답 본문을 읽어서 에러 메시지를 추출합니다.
+    const errorBody = await response.json().catch(() => ({}));
+    const message = errorBody.message || `API error: ${response.status}`;
+    throw new Error(message); // 이제 error.message에 "등록되지 않은 이메일입니다" 등이 담깁니다.
   }
 
   // 응답 본문이 있는지 확인

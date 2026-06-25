@@ -1,13 +1,14 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
 import { authService } from "@/services/authService";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-export const useSignUpMutation = () => {
+export const useSignInMutation = () => {
   const router = useRouter();
+
   return useMutation({
-    mutationFn: (data) => authService.register(data),
+    mutationFn: (data) => authService.login(data),
 
     onSuccess: (data) => {
       if (data?.accessToken) {
@@ -18,7 +19,7 @@ export const useSignUpMutation = () => {
     },
 
     onError: (error) => {
-      console.error(error.message || "회원가입에 실패했습니다.");
+      console.error(error.message || "로그인에 실패했습니다.");
     },
   });
 };
