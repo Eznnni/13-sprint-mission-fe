@@ -5,9 +5,9 @@ import Button from "@/components/ui/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema } from "@/schemas/authSchema";
-import { useSignUpMutation } from "@/hooks/useSignUpMutation";
 import { useState } from "react";
 import Modal from "@/components/common/Modal";
+import { useSignUp } from "@/hooks/useSignUp";
 
 export default function SignUpForm() {
   const {
@@ -19,22 +19,22 @@ export default function SignUpForm() {
     mode: "onChange",
   });
 
-  const { mutate: signUpMutate, isPending } = useSignUpMutation();
+  const { register: signUpRegister, isLoading } = useSignUp();
 
   const [modalStatus, setModalStatus] = useState({
     modalOpen: false,
     modalMessage: "",
   });
 
-  function onSubmit(data) {
-    signUpMutate(data, {
-      onError: (error) => {
-        setModalStatus({
-          modalOpen: true,
-          modalMessage: error.message || "회원가입에 실패했습니다.",
-        });
-      },
-    });
+  async function onSubmit(data) {
+    try {
+      await signUpRegister(data);
+    } catch (error) {
+      setModalStatus({
+        modalOpen: true,
+        modalMessage: error.message || "회원가입에 실패했습니다.",
+      });
+    }
   }
 
   return (
@@ -122,9 +122,9 @@ export default function SignUpForm() {
           variant={isValid ? "primary" : "gray"}
           rounded="round"
           type="submit"
-          disabled={!isValid || isPending}
+          disabled={!isValid || isLoading}
         >
-          {isPending ? "가입 중" : "회원가입"}
+          {isLoading ? "가입 중" : "회원가입"}
         </Button>
       </form>
 

@@ -4,3 +4,4 @@ export const COMMENT_ENDPOINT = "/comments";
 export const AUTH_ENDPOINT = "/auth";
 export const SIGNUP_ENDPOINT = "/signup";
 export const SIGNIN_ENDPOINT = "/signin";
+export const ITEM_ENDPOINT = "/items";

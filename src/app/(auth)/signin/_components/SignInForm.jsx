@@ -5,9 +5,9 @@ import Button from "@/components/ui/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "@/schemas/authSchema";
-import { useSignInMutation } from "@/hooks/useSignInMutation";
 import { useState } from "react";
 import Modal from "@/components/common/Modal";
+import { useSignIn } from "@/hooks/useSignIn";
 
 export default function SignInForm() {
   const {
@@ -19,22 +19,33 @@ export default function SignInForm() {
     mode: "onChange",
   });
 
-  const { mutate: signInMutate, isPending } = useSignInMutation();
-
+  const { login, isLoading } = useSignIn();
   const [modalStatus, setModalStatus] = useState({
     modalOpen: false,
     modalMessage: "",
   });
 
-  function onSubmit(data) {
-    signInMutate(data, {
-      onError: (error) => {
+  async function onSubmit(data) {
+    try {
+      await login(data);
+    } catch (error) {
+      if (error.message.includes("이메일")) {
+        setError("email", {
+          type: "manual",
+          message: "등록되지 않은 이메일입니다.",
+        });
+      } else if (error.message.includes("비밀번호")) {
+        setError("password", {
+          type: "manual",
+          message: "비밀번호를 확인해 주세요.",
+        });
+      } else {
         setModalStatus({
           modalOpen: true,
           modalMessage: error.message || "로그인에 실패했습니다.",
         });
-      },
-    });
+      }
+    }
   }
 
   return (
@@ -90,7 +101,7 @@ export default function SignInForm() {
           variant={isValid ? "primary" : "gray"}
           rounded="round"
           type="submit"
-          disabled={!isValid || isPending}
+          disabled={!isValid || isLoading}
         >
           로그인
         </Button>

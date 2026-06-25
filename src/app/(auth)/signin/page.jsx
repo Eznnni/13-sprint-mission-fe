@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Logo from "@/assets/logo/logo.svg";
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
 import Link from "next/link";
 import SocialLoginBox from "../_components/SocialLoginBox";
 import SignInForm from "./_components/SignInForm";
