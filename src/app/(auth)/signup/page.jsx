@@ -3,8 +3,7 @@ import Logo from "@/assets/logo/logo.svg";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Input from "@/components/ui/Input";
-import googleIcon from "@/assets/icons/social/ic_google.png";
-import kakaoIcon from "@/assets/icons/social/ic_kakao.png";
+import SocialLoginBox from "../_components/SocialLoginBox";
 
 export default function SignUp() {
   return (
@@ -66,29 +65,7 @@ export default function SignUp() {
               회원가입
             </Button>
           </form>
-          <div className="flex h-18.5 w-full flex-col items-start gap-2.5 rounded-lg bg-[#E6F2FF] px-5.75 py-4">
-            <div className="flex w-full items-center justify-between">
-              <div className="text-secondary-800 text-lg font-medium">
-                간편 로그인하기
-              </div>
-              <div className="flex items-start gap-4">
-                <a>
-                  <Image
-                    src={googleIcon}
-                    alt="구글 아이콘"
-                    className="cursor-pointer"
-                  />
-                </a>
-                <a>
-                  <Image
-                    src={kakaoIcon}
-                    alt="카카오 아이콘"
-                    className="cursor-pointer"
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
+          <SocialLoginBox />
           <div className="flex items-center justify-center gap-1">
             <span className="text-md text-secondary-800 font-medium">
               이미 회원이신가요?
