@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import togglePasswordIcon from "@/assets/icons/btn_visibility_off.svg";
+import togglePasswordIcon from "@/assets/icons/btn_visibility_off.png";
+import togglePasswordShowIcon from "@/assets/icons/btn_visibility_on.png";
 
 export default function Input({ type, ...props }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +16,7 @@ export default function Input({ type, ...props }) {
       <input
         {...props}
         type={inputType}
-        className="text-secondary-400 w-full text-lg font-normal outline-none"
+        className="text-secondary-800 w-full text-lg font-normal outline-none"
       />
 
       {type === "password" && (
@@ -24,7 +25,10 @@ export default function Input({ type, ...props }) {
           onClick={() => setShowPassword((prev) => !prev)}
           className="cursor-pointer"
         >
-          <Image src={togglePasswordIcon} alt="비밀번호 확인 아이콘" />
+          <Image
+            src={showPassword ? togglePasswordShowIcon : togglePasswordIcon}
+            alt="비밀번호 확인 아이콘"
+          />
         </button>
       )}
     </div>
