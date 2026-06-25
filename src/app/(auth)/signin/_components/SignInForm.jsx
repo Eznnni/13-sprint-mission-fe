@@ -56,6 +56,7 @@ export default function SignInForm() {
               id="email"
               type="email"
               placeholder="이메일을 입력해주세요"
+              autoComplete="email"
             />
             {errors.email && (
               <p className="text-error-red text-lg font-semibold">
@@ -75,6 +76,7 @@ export default function SignInForm() {
               id="password"
               type="password"
               placeholder="비밀번호를 입력해주세요"
+              autoComplete="current-password"
             />
             {errors.password && (
               <p className="text-error-red text-lg font-semibold">
