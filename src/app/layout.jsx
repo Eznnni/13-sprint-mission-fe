@@ -1,3 +1,4 @@
+import QueryProvider from "@/providers/QueryProvider";
 import "./globals.css";
 import localFont from "next/font/local";
 
@@ -15,7 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ko" className={pretendard.className}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }

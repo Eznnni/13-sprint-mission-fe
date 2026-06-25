@@ -24,8 +24,16 @@ export const defaultFetch = async (url, options = {}) => {
 
   const response = await fetch(`${baseURL}${url}`, mergedOptions);
 
+  // 💡 400번대 에러가 났을 때 백엔드가 보내준 진짜 에러 메시지를 꺼내오도록 수정합니다!
   if (!response.ok) {
-    throw new Error(`API error: ${response.status}`);
+    let errorMsg = `API error: ${response.status}`;
+    try {
+      const errorBody = await response.json();
+      errorMsg = errorBody.message || errorMsg; // 백엔드가 준 에러 메시지가 있다면 그걸 사용
+    } catch {
+      // JSON 파싱 실패 시 기본 상태 코드 유지
+    }
+    throw new Error(errorMsg);
   }
 
   return response.json();
