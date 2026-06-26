@@ -11,6 +11,11 @@ export const ROUTES = {
     DETAIL: (id) => `/community/${id}`,
     EDIT: (id) => `/community/${id}/edit`,
   },
+  ITEM: {
+    BASE: "/items",
+    DETAIL: (id) => `/items/${id}`,
+    EDIT: (id) => `/items/${id}/edit`,
+  },
 };
 
 export const NAV_LINKS = [

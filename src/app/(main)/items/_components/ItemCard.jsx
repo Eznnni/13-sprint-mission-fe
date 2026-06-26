@@ -1,9 +1,12 @@
 import Image from "next/image";
 import heartIcon from "@/assets/icons/ic_heart.svg";
 import itemDefaultImg from "@/assets/item_default.png";
+import Link from "next/link";
+import { ROUTES } from "@/constants/navigation";
 
 export default function ItemCard({ className = "" }) {
   return (
+    // TODO API 연결 후 주석 해제 <Link href={ROUTES.ITEM.DETAIL(id)}>
     <div className="flex flex-col items-start gap-4">
       <div className="w-full overflow-hidden rounded-2xl">
         <Image
@@ -27,5 +30,6 @@ export default function ItemCard({ className = "" }) {
         </div>
       </div>
     </div>
+    // </Link>
   );
 }
