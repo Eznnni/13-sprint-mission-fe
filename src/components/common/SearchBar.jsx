@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function SearchBar({ currentKeyword }) {
+export default function SearchBar({ className = "", currentKeyword }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [keyword, setKeyword] = useState(currentKeyword);
@@ -36,7 +36,7 @@ export default function SearchBar({ currentKeyword }) {
   return (
     <form
       onSubmit={handleSearchSubmit}
-      className="bg-secondary-100 flex h-10.5 w-263.5 flex-col rounded-xl py-[0.56rem] pr-5 pl-4"
+      className={`bg-secondary-100 flex h-10.5 w-263.5 flex-col rounded-xl py-[0.56rem] pr-5 pl-4 ${className}`}
     >
       <div className="flex gap-1">
         <Image src={searchIcon} alt="검색 아이콘" />
