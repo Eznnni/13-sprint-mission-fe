@@ -5,6 +5,7 @@ import Image from "next/image";
 import logoPc from "@/assets/logo/logo.svg";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/constants/navigation";
+import HeaderAuthStatus from "./HeaderAuthStatus";
 
 export default function Header() {
   const pathname = usePathname();
@@ -27,9 +28,8 @@ export default function Header() {
           ))}
         </div>
       </div>
-      <Link href="/signin" className="btn">
-        로그인
-      </Link>
+
+      <HeaderAuthStatus />
     </nav>
   );
 }

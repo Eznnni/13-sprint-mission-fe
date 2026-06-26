@@ -1,9 +1,13 @@
 "use client";
 
-import { useContext } from "react";
+import { userService } from "@/services/userService";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
-  register: () => {},
+  user: null,
+  isInitialized: false,
+  login: () => {},
+  logout: () => {},
 });
 
 export const useAuth = () => {
@@ -15,9 +19,51 @@ export const useAuth = () => {
 };
 
 export default function AuthProvider({ children }) {
-  const register = async({ email, nickname, password, passwordConfirmation });
+  const [user, setUser] = useState(null);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  const getUser = async () => {
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+    if (!token) {
+      setUser(null);
+      setIsInitialized(true);
+      return;
+    }
+
+    try {
+      const userData = await userService.getMe();
+      setUser(userData);
+    } catch (error) {
+      console.error("유저 정보 로드 실패", error);
+      localStorage.removeItem("accessToken");
+      setUser(null);
+    } finally {
+      setIsInitialized(true);
+    }
+  };
+
+  function login(token) {
+    localStorage.setItem("accessToken", token);
+    getUser();
+  }
+
+  function logout() {
+    localStorage.removeItem("accessToken");
+    setUser(null);
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      getUser();
+    }, 0);
+  }, []);
 
   return (
-    <AuthContext.Provider value={register}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, isInitialized, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
