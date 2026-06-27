@@ -8,6 +8,7 @@ import ItemCard from "./ItemCard";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/common/Dropdown";
 import Pagination from "@/components/common/Pagination";
+import { MARKET_ITEM_OPTIONS } from "@/constants/dropdownOption";
 
 export default function ItemListPage({ initialFilters = {} }) {
   const [currentPage, setCurrentPage] = useState(initialFilters.page);
@@ -102,6 +103,8 @@ export default function ItemListPage({ initialFilters = {} }) {
                 상품 등록하기
               </Button>
               <Dropdown
+                options={MARKET_ITEM_OPTIONS}
+                value={sort}
                 onChange={(val) => {
                   setSort(val);
                   setCurrentPage(1);
