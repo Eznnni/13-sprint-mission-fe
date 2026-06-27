@@ -88,7 +88,9 @@ export default function ItemListPage({ initialFilters = {} }) {
             </h2>
             <div className="flex items-center gap-3">
               <SearchBar
-                className="w-[325px]"
+                className="w-81.25"
+                currentKeyword={keyword}
+                placeholder="검색할 상품을 입력해주세요"
                 onSearch={(val) => {
                   setKeyword(val);
                   setCurrentPage(1);
