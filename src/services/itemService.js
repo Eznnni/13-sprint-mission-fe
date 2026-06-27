@@ -1,4 +1,4 @@
-import { ITEM_ENDPOINT, PRODUCT_ENDPOINT } from "@/constants/endpoint";
+import { PRODUCT_ENDPOINT } from "@/constants/endpoint";
 import { defaultFetch } from "./fetchClient";
 
 export const getItems = async ({
