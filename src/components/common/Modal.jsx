@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Button from "../ui/Button";
 import useClickOutside from "@/hooks/useClickOutside";
 
-export default function Modal({ isOpen, message, onClose }) {
+export default function Modal({ isOpen, message, onClose, children }) {
   const modalRef = useRef();
 
   // 💡 흰색 컨텐츠 상자(modalRef) 바깥 영역(어두운 딤드 배경)을 누르면 정상적으로 닫힙니다.
@@ -24,15 +24,19 @@ export default function Modal({ isOpen, message, onClose }) {
           <div className="text-secondary-800 text-2lg w-full justify-center text-center font-medium whitespace-nowrap">
             {message}
           </div>
-          <Button
-            size="small"
-            variant="primary"
-            rounded="square"
-            className="w-full"
-            onClick={onClose}
-          >
-            확인
-          </Button>
+          {children ? (
+            children
+          ) : (
+            <Button
+              size="small"
+              variant="primary"
+              rounded="square"
+              className="w-full"
+              onClick={onClose}
+            >
+              확인
+            </Button>
+          )}
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import QueryProvider from "@/providers/QueryProvider";
 import "./globals.css";
 import localFont from "next/font/local";
 import AuthProvider from "@/providers/AuthProvider";
+import RouteGuard from "@/providers/RouteGuard";
 
 const pretendard = localFont({
   src: "../fonts/Pretendard-Regular.woff2",
@@ -19,7 +20,9 @@ export default function RootLayout({ children }) {
     <html lang="ko" className={pretendard.className}>
       <body className="font-sans">
         <QueryProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <RouteGuard>{children}</RouteGuard>
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>

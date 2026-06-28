@@ -9,6 +9,8 @@ const variantClasses = {
   primary: "bg-brand-blue text-white",
   gray: "bg-cool-gray-400 text-cool-gray-100 ",
   white: "bg-white border-cool-gray-300 border ",
+  red: "bg-error-red text-cool-gray-100",
+  redOutline: "bg-cool-gray-50 border border-error-red text-error-red",
 };
 
 const roundedClasses = {

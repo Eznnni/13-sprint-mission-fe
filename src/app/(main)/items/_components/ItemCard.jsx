@@ -16,6 +16,7 @@ export default function ItemCard({ item }) {
           <Image
             src={displayImage}
             alt="아이템 기본 이미지"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
             fill
             className="object-cover"
           />
