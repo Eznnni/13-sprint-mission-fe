@@ -59,7 +59,7 @@ export default async function PostDetailpage({ params }) {
         </section>
       </div>
       <div className="flex justify-center">
-        <BackToHomeButton />
+        <BackToHomeButton type="post" />
       </div>
     </div>
   );
