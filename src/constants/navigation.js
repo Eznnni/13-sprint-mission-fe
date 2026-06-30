@@ -11,11 +11,16 @@ export const ROUTES = {
     DETAIL: (id) => `/community/${id}`,
     EDIT: (id) => `/community/${id}/edit`,
   },
+  ITEM: {
+    BASE: "/items",
+    DETAIL: (id) => `/items/${id}`,
+    EDIT: (id) => `/items/${id}/edit`,
+  },
 };
 
 export const NAV_LINKS = [
   { id: 1, href: "/community", label: "자유게시판" },
-  { id: 2, href: "/market", label: "중고마켓" },
+  { id: 2, href: "/items", label: "중고마켓" },
 ];
 
 export const SOCIAL_LINKS = [

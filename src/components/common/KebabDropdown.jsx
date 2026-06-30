@@ -15,10 +15,17 @@ export default function KebabDropdown({ onEdit, onDelete }) {
   }
 
   function handleDropdownOption(id) {
+    console.log("드롭다운 선택됨:", id); // 💡 여기서 로그가 찍히는지 확인
     setIsOpen(false);
 
-    if (id === 1 && onEdit) onEdit();
-    if (id === 2 && onDelete) onDelete();
+    if (id === 1 && onEdit) {
+      console.log("수정 호출");
+      onEdit();
+    }
+    if (id === 2 && onDelete) {
+      console.log("삭제 호출"); // 💡 여기서 로그가 찍혀야 합니다!
+      onDelete();
+    }
   }
 
   const handleCloseDropdown = useCallback(() => {

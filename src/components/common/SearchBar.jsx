@@ -1,51 +1,43 @@
 "use client";
 
-import searchIcon from "@/assets/icons/ic_search.svg";
-import { ROUTES } from "@/constants/navigation";
-import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import searchIcon from "@/assets/icons/ic_search.svg";
 
-export default function SearchBar({ currentKeyword }) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [keyword, setKeyword] = useState(currentKeyword);
+export default function SearchBar({
+  className = "",
+  currentKeyword = "",
+  onSearch,
+  placeholder = "검색어를 입력해주세요",
+}) {
+  const [keyword, setKeyword] = useState(currentKeyword || "");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setKeyword(currentKeyword || "");
+    }, 0);
+  }, [currentKeyword]);
 
   function handleSearchSubmit(e) {
     e.preventDefault();
-
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (keyword.trim()) {
-      params.set("keyword", keyword);
-    } else {
-      params.delete("keyword");
+    if (onSearch) {
+      onSearch(keyword.trim());
     }
-    params.set("page", "1");
-
-    router.push(`${ROUTES.COMMUNITY.BASE}?${params.toString()}`);
   }
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setKeyword(currentKeyword);
-    }, 0);
-    return () => clearTimeout(timer);
-  }, [currentKeyword]);
 
   return (
     <form
       onSubmit={handleSearchSubmit}
-      className="bg-secondary-100 flex h-10.5 w-263.5 flex-col rounded-xl py-[0.56rem] pr-5 pl-4"
+      className={`bg-secondary-100 flex h-10.5 w-81.25 flex-col rounded-xl py-[0.56rem] pr-5 pl-4 ${className}`}
     >
-      <div className="flex gap-1">
-        <Image src={searchIcon} alt="검색 아이콘" />
+      <div className="flex h-full items-center gap-1">
+        <Image src={searchIcon} alt="검색 아이콘" width={24} height={24} />
         <input
           type="text"
-          value={keyword}
+          value={keyword || ""} // 💡 undefined 방어막
           onChange={(e) => setKeyword(e.target.value)}
-          placeholder="검색할 상품을 입력해주세요"
-          className="text-secondary-400 w-full items-center text-[1rem] font-normal outline-none"
+          placeholder={placeholder}
+          className="text-secondary-900 placeholder:text-secondary-400 w-full items-center bg-transparent text-[1rem] font-normal outline-none"
         />
       </div>
     </form>

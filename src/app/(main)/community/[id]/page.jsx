@@ -45,7 +45,7 @@ export default async function PostDetailpage({ params }) {
         </section>
         <section className="flex flex-col items-start gap-10 self-stretch">
           <div className="flex flex-col items-end gap-4 self-stretch">
-            <CommentInput postId={id} />
+            <CommentInput postId={id} type="post" />
           </div>
           <div className="flex w-full flex-col items-start gap-6">
             {comments.length > 0 ? (
@@ -59,7 +59,7 @@ export default async function PostDetailpage({ params }) {
         </section>
       </div>
       <div className="flex justify-center">
-        <BackToHomeButton />
+        <BackToHomeButton type="post" />
       </div>
     </div>
   );

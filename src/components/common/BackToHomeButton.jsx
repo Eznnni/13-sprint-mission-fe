@@ -2,10 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import backIcon from "@/assets/icons/ic_back.svg";
 
-export default function BackToHomeButton() {
+export default function BackToHomeButton({ type = "item" }) {
   return (
     <Link
-      href="/"
+      href={type === "item" ? "/items" : "/"}
       type="button"
       className="btn flex h-12 w-60 items-center justify-center gap-2 rounded-[2.5rem] px-6"
     >

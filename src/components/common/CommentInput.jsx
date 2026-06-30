@@ -1,50 +1,79 @@
 "use client";
 
-import { createPostComment } from "@/services/commentService";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export default function CommentInput({ postId }) {
-  const router = useRouter();
+import { createComment } from "@/services/productCommentService";
+import { COMMENT_ENDPOINT, POST_ENDPOINT } from "@/constants/endpoint";
+
+// 자유게시판 호출 시: <CommentInput productId={id} type="post" />
+// 중고마켓 호출 시: <CommentInput productId={itemId} type="item" /> (또는 생략 가능)
+export default function CommentInput({ productId, type = "item" }) {
+  const queryClient = useQueryClient();
   const [content, setContent] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async () => {
-    const trimmedContent = content.trim();
+  const isItem = type === "item";
+  const titleText = isItem ? "문의하기" : "댓글달기";
+  const placeholderText = isItem
+    ? "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+    : "댓글을 입력해주세요.";
 
-    if (!trimmedContent) {
-      alert("댓글 내용을 입력해주세요.");
-      return;
-    }
-
-    try {
-      setIsSubmitting(true);
-
-      await createPostComment(postId, trimmedContent);
+  const commentMutation = useMutation({
+    mutationFn: async () => {
+      const trimmed = content.trim();
+      if (isItem) {
+        return createComment(productId, trimmed);
+      } else {
+        const BASE_URL = process.env.NEXT_PUBLIC_PANDA_API_BASE_URL;
+        const token = localStorage.getItem("accessToken");
+        const headers = {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        };
+        const res = await fetch(
+          `${BASE_URL}${POST_ENDPOINT}/${productId}${COMMENT_ENDPOINT}`,
+          {
+            method: "POST",
+            headers,
+            body: JSON.stringify({ content: trimmed }),
+          },
+        );
+        if (!res.ok) throw new Error("댓글 등록에 실패했습니다.");
+        return res.json();
+      }
+    },
+    onSuccess: () => {
       setContent("");
-      router.refresh();
-    } catch (error) {
-      console.error("댓글 등록 실패", error);
-      alert("댓글 등록에 실패했습니다.");
-    } finally {
-      setIsSubmitting(false);
-    }
+
+      queryClient.invalidateQueries({
+        queryKey: ["comments", type, productId],
+      });
+    },
+    onError: (err) => {
+      alert(err.message);
+    },
+  });
+
+  const handleSubmit = () => {
+    if (!content.trim()) return alert("댓글 내용을 입력해주세요.");
+    commentMutation.mutate();
   };
 
-  const isButtonEnabled = content.trim().length > 0 && !isSubmitting;
+  const isButtonEnabled =
+    content.trim().length > 0 && !commentMutation.isPending;
 
   return (
-    <div className="flex flex-col items-start justify-center gap-2.25 self-stretch">
-      <h3 className="text-cool-gray-900 w-14 text-[1rem] font-semibold">
-        댓글달기
+    <div className="flex w-full flex-col items-start justify-center gap-2">
+      <h3 className="text-cool-gray-900 text-[1rem] font-semibold">
+        {titleText}
       </h3>
-      <div className="bg-cool-gray-100 max-h-26 w-full max-w-300 flex-col items-start gap-2.5 rounded-xl px-6 py-4">
+      <div className="bg-cool-gray-100 w-full rounded-xl px-6 py-4">
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          placeholder="댓글을 입력해주세요."
+          placeholder={placeholderText}
           maxLength={400}
-          className="h-full w-full resize-none overflow-y-auto outline-none"
+          className="h-20 w-full resize-none overflow-y-auto bg-transparent text-gray-800 outline-none"
         />
       </div>
       <button
@@ -53,7 +82,7 @@ export default function CommentInput({ postId }) {
         className={`self-end ${isButtonEnabled ? "btn" : "btn-disabled"}`}
         type="button"
       >
-        {isSubmitting ? "등록 중..." : "등록"}
+        {commentMutation.isPending ? "등록 중..." : "등록"}
       </button>
     </div>
   );
