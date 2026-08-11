@@ -20,6 +20,8 @@ export const signInSchema = z.object({
   password: passwordSchema,
 });
 
+export type SignInFormData = z.infer<typeof signInSchema>;
+
 export const signUpSchema = z
   .object({
     email: emailSchema,
@@ -38,3 +40,5 @@ export const signUpSchema = z
     message: "비밀번호가 일치하지 않습니다.",
     path: ["passwordConfirmation"],
   });
+
+export type SignUpFormData = z.infer<typeof signUpSchema>;
