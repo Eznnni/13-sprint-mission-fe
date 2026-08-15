@@ -8,13 +8,13 @@ export const ROUTES = {
   COMMUNITY: {
     BASE: "/community",
     REGISTER: "/community/register",
-    DETAIL: (id: string) => `/community/${id}`,
-    EDIT: (id: string) => `/community/${id}/edit`,
+    DETAIL: (id: number) => `/community/${id}`,
+    EDIT: (id: number) => `/community/${id}/edit`,
   },
   ITEM: {
     BASE: "/items",
-    DETAIL: (id: string) => `/items/${id}`,
-    EDIT: (id: string) => `/items/${id}/edit`,
+    DETAIL: (id: number) => `/items/${id}`,
+    EDIT: (id: number) => `/items/${id}/edit`,
   },
 };
 
