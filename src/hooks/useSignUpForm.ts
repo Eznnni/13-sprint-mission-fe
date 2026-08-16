@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { SignUpFormData, signUpSchema } from "@/schemas/authSchema";
 import { useSignUp } from "@/hooks/useSignUp";
 import { SIGNIN_ENDPOINT } from "@/constants/endpoint";
-import { getErrorMessage } from "@/app/lib/error";
+import { getErrorMessage } from "@/lib/error";
 
 export function useSignUpForm() {
   const router = useRouter();

@@ -10,7 +10,7 @@ import timeAgoFormat from "@/utils/timeAgoFormat";
 import { useAuth } from "@/providers/AuthProvider";
 import DeleteModal from "./DeleteModal";
 import { Comment } from "@/types";
-import { getErrorMessage } from "@/app/lib/error";
+import { getErrorMessage } from "@/lib/error";
 
 type CommentReplyListType = "post" | "item";
 

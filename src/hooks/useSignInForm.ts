@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInFormData, signInSchema } from "@/schemas/authSchema";
 import { useSignIn } from "@/hooks/useSignIn";
-import { getErrorMessage } from "@/app/lib/error";
+import { getErrorMessage } from "@/lib/error";
 
 export function useSignInForm() {
   const {
