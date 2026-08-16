@@ -100,3 +100,32 @@ export interface UpdateProductInput {
   tags?: string[];
   images?: string[];
 }
+
+export interface ItemWriter {
+  id: number;
+  nickname: string;
+  image?: string | null;
+}
+
+export interface Item {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string[];
+  likeCount: number;
+  createdAt: string;
+  updatedAt: string;
+  tags: string[];
+  writer: ItemWriter;
+}
+
+export interface ItemListResponse {
+  success: boolean;
+  page: number;
+  pageSize: number;
+  totalCount: number;
+  totalPages: number;
+  filters: { search: string; sort: string };
+  list: Item[];
+}
